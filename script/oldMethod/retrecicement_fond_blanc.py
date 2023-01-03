@@ -12,17 +12,18 @@ from PIL import Image # on importe le module pour avoir les dim de l'image
 # Code pour récuperér une photo instagram après un screen
 # =============================================================================
 
-chemin = input("veuillez rentrer le chemin de là où il y a les photos :\n ") # on demande à l'utilisateur de rentrer le chemin et le nom de la photo 
+# chemin = input("veuillez rentrer le chemin de là où il y a les photos :\n ") # on demande à l'utilisateur de rentrer le chemin et le nom de la photo 
+chemin = "../test/"
 
 image_list = [] # on créer un tableau dans lequel on va mettre toutes les images 
 name_image = [] # on créer un tableau dans lequel on va mettre les noms des images 
 
-for filename in glob.glob(chemin+"\*.jpg") : # toutes les photos en jpg, on veut les mettre en png 
+for filename in glob.glob(chemin+"*.jpg") : # toutes les photos en jpg, on veut les mettre en png 
     im = Image.open(filename) # on ouvre l'image 
     im.save(str(filename)+".png") # on l'enregistre au format png 
     os.remove(str(filename)) # on supprime l'ancienne image 
 
-for filename in glob.glob(chemin+"\*.png"): # I browse all.jpg files that are in the directory indicated by the variable "chemin".
+for filename in glob.glob(chemin+"*.png"): # I browse all.jpg files that are in the directory indicated by the variable "chemin".
     im=Image.open(filename) # on ouvre l'image 
     image_list.append(im) # I add the image to a table
     name_image.append(filename) # on enregistre l'image avec son nom dans une case du tableau
@@ -82,6 +83,6 @@ for p in range(len(image_list)) : # on parcoure toutes les images du tableau
     new_l = int(largeur * coef) # on calcule la nouvelle largeur 
     ima = ima.resize((new_l,new_h), Image.ANTIALIAS) # on redimensionne l'image avec les nouvelles dimensions que l'on vient de calculer 
     # maintenant on peut les enregistrer
-    ima.save(str(chemin)+'\\done\\photo_'+str(p)+'.png') # on la ré-enregistre sous un autre nom  
+    ima.save(str(chemin)+'/done/photo_'+str(p)+'.png') # on la ré-enregistre sous un autre nom  
     os.remove(str(name_image[p])) # on supprime l'ancienne image 
 

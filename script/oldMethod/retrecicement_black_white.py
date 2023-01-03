@@ -64,7 +64,6 @@ def superposer_img(front,background,i, folder): # ft = front , bg = background, 
     rgb_im.save( folder + "photo_"+ str(i) +".jpg") # on enregistre la photo 
 
 
-
 # =============================================================================
 # Code pour récuperér une photo instagram après un screen
 # =============================================================================
@@ -78,17 +77,17 @@ def crop(chemin, ordi, phone):
     # =============================================================================
     print("Préparation des photos et ré-enregistrement dans le bon format")
     
-    for filename in glob.glob(chemin+"\*.jpg") : # toutes les photos en jpg, on veut les mettre en png 
+    for filename in glob.glob(chemin+"*.jpg") : # toutes les photos en jpg, on veut les mettre en png 
         im = Image.open(filename) # on ouvre l'image 
         im.save(str(filename)+".png") # on l'enregistre au format png 
         os.remove(str(filename)) # on supprime l'ancienne image 
         
-    for filename in glob.glob(chemin+"\*.jpeg") : # toutes les photos en jpg, on veut les mettre en png 
+    for filename in glob.glob(chemin+"*.jpeg") : # toutes les photos en jpg, on veut les mettre en png 
         im = Image.open(filename) # on ouvre l'image 
         im.save(str(filename)+".png") # on l'enregistre au format png 
         os.remove(str(filename)) # on supprime l'ancienne image 
     
-    for filename in glob.glob(chemin+"\*.png"): # I browse all.jpg files that are in the directory indicated by the variable "chemin".
+    for filename in glob.glob(chemin+"*.png"): # I browse all.jpg files that are in the directory indicated by the variable "chemin".
         im=Image.open(filename) # on ouvre l'image 
         image_list.append([im,filename.split("\\")[-1].split(".")[0]]) # I add the image and name to a table
         name_image.append(filename) # on enregistre l'image avec son nom dans une case du tableau
@@ -102,7 +101,6 @@ def crop(chemin, ordi, phone):
     
         ima = image_list[p][0] # on choisit la photo 
         largeur, hauteur = ima.size  # on prend ses dimensions 
-        
         
         if largeur == 1080 and hauteur == 2340 or largeur == 1242 and hauteur == 2208 : # si la photo est bien au dimensions de mes photos, alors on peut continuer (les portables avec lesquels je prenais les photos faisait seulement ces dimensions de photos là, si la photo ne fait pas ces dimensions, elle a déjà été modifiée ou alors elle vient d'un autre portable)
             
@@ -287,13 +285,13 @@ def crop(chemin, ordi, phone):
             phone_h = int(hauteur * phone_coef) # on calcule la nouvelle hauteur ( qui doit être égal a 440 normalement )
             phone_l = int(largeur * phone_coef) # on calcule la nouvelle largeur 
             ima = ima.resize((phone_l,phone_h), Image.ANTIALIAS) # on redimensionne l'image avec les nouvelles dimensions que l'on vient de calculer 
-            superposer_img(ima,r"D:\ProgNJob\Perso\Instagram_fond_ecran\fond_noir.png" ,p, str(chemin)+"\\photo_phone\\")
+            superposer_img(ima,"../utils/fond_noir.png" ,p, str(chemin)+"done/")
             #rgb_im2.save(str(chemin)+'\\photo_phone\\photo_'+str(p)+'.jpg') # on la ré-enregistre sous un autre nom 
             
             
 # chemin = input("veuillez rentrer le chemin de là où il y a les photos :\n ") # on demande à l'utilisateur de rentrer le chemin et le nom de la photo 
-chemin = r"D:\ProgNJob\Perso\Instagram_fond_ecran\test"
 #chemin = r"D:\ProgNJob\Perso\Instagram_fond_ecran\photo"
+chemin = "../test/"
 
-crop(chemin, True,True)
+crop(chemin, False, True)
 print("over",str(time()-h1))
