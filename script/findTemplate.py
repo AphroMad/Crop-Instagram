@@ -1,3 +1,5 @@
+# Run with python3.10
+
 import cv2
 import numpy as np
 import glob
@@ -86,7 +88,7 @@ if not os.path.exists(template_comment):
 for filename in glob.glob(chemin+"*.png"):
     all_ite += 1
     name = filename.split("test/")[1].split(".")[0] 
-    print(filename, name) 
+    print(filename) 
     settings_found = False 
     comment_found = False 
     # While we don't find both

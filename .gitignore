@@ -1,5 +1,10 @@
 
 images/*
 test/*
-
+template/*
 .DS_Store
+script/tkinterTest/__pycache__/*
+script/tkinterTest/template/*
+script/__pycache__/*
+video/*
+
