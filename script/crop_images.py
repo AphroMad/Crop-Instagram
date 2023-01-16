@@ -71,7 +71,7 @@ def test_template():
             find_template_resized(filename, filename2)
 
 
-chemin = "../test/"
+chemin = "../echantillon_images/"
 chemin_results = chemin+"done/"
 template_settings = "../template/settings/"
 template_comment = "../template/comment/"
@@ -87,7 +87,7 @@ if not os.path.exists(template_comment):
 # Go through all the files we want to crop 
 for filename in glob.glob(chemin+"*.png"):
     all_ite += 1
-    name = filename.split("test/")[1].split(".")[0] 
+    name = filename.split("echantillon_images/")[1].split(".")[0] 
     print(filename) 
     settings_found = False 
     comment_found = False 
@@ -99,14 +99,14 @@ for filename in glob.glob(chemin+"*.png"):
             settings_place = find_template_resized(filename, filename2)
             if settings_place != False:
                 settings_found = True
-                lim_haute = settings_place[0][0][1] + int(1.75*cv2.imread(filename2).shape[0])
+                lim_haute = settings_place[0][0][1] + int(2.1*cv2.imread(filename2).shape[0])
         # Try to find comment emplacment
         for filename2 in glob.glob(template_comment+"*.png"):
             name2 = filename2.split("template/comment/")[1].split(".")[0]
             comment_place = find_template_resized(filename, filename2)
             if comment_place != False:
                 comment_found = True
-                lim_basse = comment_place[0][1][1] - int(1.5*cv2.imread(filename2).shape[0])
+                lim_basse = comment_place[0][1][1] - int(2.1*cv2.imread(filename2).shape[0])
         # Doesn't find at least one, tkinter time 
         if not settings_found or not comment_found:
             ite += 1
